@@ -29,7 +29,7 @@ public class AdminController {
     public R selectAllTables() {
 
 
-        redisTemplate.opsForValue().set("aaa","aaaa");
+        redisTemplate.opsForValue().set("aaa","assssssssssaaa");
 
 
         return R.getOk(adminService.selectAllTables());

@@ -24,7 +24,7 @@ public class SwaggerConfig {
 
     @Bean
     public Docket createDoc() {
-       return new Docket(DocumentationType.SWAGGER_2).apiInfo(createApi()).select().apis(RequestHandlerSelectors.basePackage("com.qfedu.com.qfedu.ordersystem.controller")).build();
+       return new Docket(DocumentationType.SWAGGER_2).apiInfo(createApi()).select().apis(RequestHandlerSelectors.basePackage("com.qfedu.ordersystem.controller")).build();
     }
 
 
