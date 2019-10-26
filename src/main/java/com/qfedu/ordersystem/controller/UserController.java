@@ -11,6 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
 
+    @PostMapping("/lalalal")
+    @ApiOperation(value = "aaa", notes = "sss", tags = "dddd")
+    public void lalala() {
+
+        System.out.println("ssssssssssssssssss");
+
+    }
+
+
     @PostMapping("/all")
     @ApiOperation(value = "aaa", notes = "sss", tags = "dddd")
     public void all() {
