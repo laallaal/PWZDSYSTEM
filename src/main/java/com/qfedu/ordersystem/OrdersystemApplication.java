@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@MapperScan("com.qfedu.rbca.commonrbac.dao")
+@MapperScan("com.qfedu.com.qfedu.ordersystem.dao")
 @EnableSwagger2
 public class OrdersystemApplication {
 
