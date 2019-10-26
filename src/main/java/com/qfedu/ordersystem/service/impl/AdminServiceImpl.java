@@ -22,4 +22,24 @@ public class AdminServiceImpl extends ServiceImpl<AdminDao, Admin> implements Ad
 
         return tables;
     }
+
+
+    @Override
+    public List<Tables> selectTablesByTypeId(String tfrom) {
+
+        List<Tables> tables = getBaseMapper().selectTablesByTypeId(tfrom);
+
+        return tables;
+    }
+
+    @Override
+    public List<Tables> selectTableByInput(String str) {
+
+        System.out.println("111111111111");
+        List<Tables> tables = getBaseMapper().selectTableByInput(str);
+
+        System.out.println("2222222");
+
+        return tables;
+    }
 }

@@ -9,4 +9,8 @@ import java.util.List;
 public interface AdminService extends IService<Admin> {
 
     List<Tables> selectAllTables();
+
+    List<Tables> selectTablesByTypeId(String tfrom);
+
+    List<Tables> selectTableByInput(String str);
 }
