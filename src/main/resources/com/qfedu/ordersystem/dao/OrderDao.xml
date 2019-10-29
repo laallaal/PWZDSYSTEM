@@ -10,8 +10,8 @@
       <result column="state" property="state" jdbcType="INTEGER" />
     </resultMap>
 
-    <insert id="insertSelective" parameterType="com.qfedu.ordersystem.entry.Order" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-      insert into order
+  <insert id="insertSelective" parameterType="com.qfedu.ordersystem.entry.Order" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+      insert into `order`
       <trim prefix="(" suffix=")" suffixOverrides="," >
         <if test="id != null" >
           id,
@@ -53,11 +53,10 @@
         </if>
       </trim>
     </insert>
-<select id="selectOrderMenuByTid" statementType="int"
 
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.ordersystem.entry.Order" >
-      update order
+    <update id="updateByPrimaryKey" parameterType="com.qfedu.ordersystem.entry.Order" >
+      update `order`
       <set >
         <if test="tid != null" >
           tid = #{tid,jdbcType=INTEGER},
@@ -77,5 +76,16 @@
       </set>
       where id = #{id,jdbcType=INTEGER}
     </update>
-
+    <select id="selectOrderAllByState" resultType="integer" resultMap="BaseResultMap">
+      select * from `order`
+      <if test="state != null and state != 0 ">
+        where state = #{state}
+      </if>
+    </select>
+    <delete id="deleteOrder" parameterType="int">
+      delete from `order` where id = #{oid}
+    </delete>
+    <update id="updateStateById" parameterType="integer">
+      update `order` set state = 3 where id = #{oid}
+    </update>
   </mapper>

@@ -6,15 +6,28 @@
       <result column="oid" property="oid" jdbcType="INTEGER" />
       <result column="mid" property="mid" jdbcType="INTEGER" />
       <result column="num" property="num" jdbcType="INTEGER" />
-      <collection property="num" ofType="com.qfedu.ordersystem.entry.Menu"
+      <collection property="menu" ofType="com.qfedu.ordersystem.entry.Menu"
                   select="com.qfedu.ordersystem.dao.MenuDao.selectById" column="mid" >
         </collection>
   </resultMap>
-<select id="selectOrderMenuByTid" parameterType="int" resultMap="BaseResultMap">
-  select * from order_menu where oid = #{oid}
-</select>
+    <select id="selectOrderMenuByTid" parameterType="int" resultMap="BaseResultMap">
+        select * from order_menu where oid = #{oid} and num > 0
+    </select>
+    <insert id="addOrderMenu" parameterType="com.qfedu.ordersystem.entry.OrderMenu">
+        insert into order_menu(oid, mid, num) values (#{oid},#{mid},1)
+    </insert>
 
+    <update id="riseOrderMenuNumByOid" parameterType="com.qfedu.ordersystem.entry.OrderMenu">
+        update order_menu set num = num + #{num} where oid = #{oid} and mid = #{mid} and num >= 0
+    </update>
 
-
-
-  </mapper>
+    <update id="decrOrderMenuNumByOid" parameterType="com.qfedu.ordersystem.entry.OrderMenu">
+        update order_menu set num = num + #{num} where oid = #{oid} and mid = #{mid} and num >= 1
+    </update>
+    <select id="selectByOidAndMid" parameterType="com.qfedu.ordersystem.entry.OrderMenu" resultType="integer">
+        select count(1) from order_menu where oid = #{oid} and mid = #{mid}
+    </select>
+    <delete id="deleteByOid" parameterType="integer">
+        delete from order_menu where oid = #{oid}
+    </delete>
+</mapper>
