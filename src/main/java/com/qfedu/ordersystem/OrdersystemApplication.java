@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@MapperScan("com.qfedu.com.qfedu.ordersystem.dao")
+@MapperScan("com.qfedu.ordersystem.dao")
 @EnableSwagger2
 public class OrdersystemApplication {
 
