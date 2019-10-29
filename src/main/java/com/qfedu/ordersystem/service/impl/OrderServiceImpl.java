@@ -4,15 +4,17 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qfedu.ordersystem.dao.OrderDao;
 import com.qfedu.ordersystem.dao.OrderMenuDao;
-import com.qfedu.ordersystem.entry.Menu;
 import com.qfedu.ordersystem.entry.Order;
 import com.qfedu.ordersystem.entry.OrderMenu;
 import com.qfedu.ordersystem.service.OrderService;
-import com.qfedu.ordersystem.utils.jedis.JedisClient;
 import com.qfedu.ordersystem.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
-import redis.clients.jedis.JedisPool;
+
+
+import javax.annotation.Resource;
 import java.util.List;
 
 import java.util.List;
@@ -20,25 +22,26 @@ import java.util.UUID;
 
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements OrderService {
-    @Autowired
-    JedisClient jedisClient;
+    @Resource
+    private RedisTemplate<String, String> redisTemplate;
     @Autowired
     OrderMenuDao orderMenuDao;
 
     @Override
     public R createOrder(Integer tid) {
+
         Order order = new Order();
         order.setOrderNum(UUID.randomUUID().toString());
         order.setTid(tid);
         order.setState(1);
         int oid = getBaseMapper().insertSelective(order);
-        jedisClient.set("位置:" + order.getTid(),order.getId() + "");
+        redisTemplate.opsForValue().set("位置:" + order.getTid(),order.getId() + "");
         return R.getOk(oid);
     }
 
     @Override
     public R selectOrderMenuByTid(int tid) {
-        String s = jedisClient.get("位置:" + tid);
+        String s = redisTemplate.opsForValue().get("位置:" + tid);
         if (s == null || s.equals("")) {
             return R.setError();
         }
@@ -49,7 +52,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
 
     @Override
     public R placeAnOrder(Integer tid) {
-        String s = jedisClient.get("位置:" + tid);
+        String s = redisTemplate.opsForValue().get("位置:" + tid);
         if (s == null || s.equals("")) {
             return R.setError();
         }
@@ -67,7 +70,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
         order.setState(2);
         int rows = getBaseMapper().updateByPrimaryKey(order);
         if (rows > 0){
-            jedisClient.del("位置:" + tid);
+            redisTemplate.delete("位置:" + tid);
             return R.getOk("ok");
         }else {
             return R.setError();
@@ -76,7 +79,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
 
     @Override
     public R choosePungecydegree(Integer tid, Integer pungecydegree) {
-        String s = jedisClient.get("位置:" + tid);
+        String s = redisTemplate.opsForValue().get("位置:" + tid);
         if (s == null || s.equals("")) {
             return R.setError();
         }
