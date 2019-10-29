@@ -9,10 +9,19 @@ import java.util.List;
 
 public interface OrderService extends IService<Order> {
 
-    R createOrder(Order order);
+    R createOrder(Integer tid);
 
 
 
     R selectOrderMenuByTid(int tid);
 
+    R placeAnOrder(Integer tid);
+
+    R choosePungecydegree(Integer tid, Integer pungecydegree);
+
+    R selectOrderAllByState(Integer state);
+
+    R deleteOrder(Integer oid);
+
+    R paySuccess(Integer oid);
 }

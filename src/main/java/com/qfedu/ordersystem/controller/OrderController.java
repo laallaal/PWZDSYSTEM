@@ -4,34 +4,68 @@ import java.util.List;
 
 import com.qfedu.ordersystem.entry.Order;
 import com.qfedu.ordersystem.entry.OrderMenu;
+import com.qfedu.ordersystem.service.OrderMenuService;
 import com.qfedu.ordersystem.service.OrderService;
 import com.qfedu.ordersystem.vo.R;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Api(value = "订单系统",tags = "订单系统")
 public class OrderController {
     @Autowired
     OrderService orderService;
+    @Autowired
+    OrderMenuService orderMenuService;
 
-    @RequestMapping("api/order/createOrder")
-    public R addOrder(Order order){
-        return orderService.createOrder(order);
+    @PostMapping("api/order/createOrder")
+    @ApiOperation(value = "点击座位，创建相应订单",notes = "点击座位，创建相应订单")
+    public R addOrder(Integer tid){
+        return orderService.createOrder(tid);
     }
 
-    @RequestMapping("api/order/selectOrderMenu")
-    public R selectOrderMenu(int tid) {
+    @GetMapping("api/order/selectOrderMenu")
+    @ApiOperation(value = "根据座位号查找当前正在就餐人员的菜单", notes = "根据座位号查找当前正在就餐人员的菜单")
+    public R selectOrderMenu(Integer tid) {
         return orderService.selectOrderMenuByTid(tid);
     }
 
-    @RequestMapping("api/Order/orderAll")
-    public R orderAll(){
-        return R.getOk(orderService.list());
-    }
-    @RequestMapping("api/order/addOrderMenu")
-    public R addOrderMenu() {
-
+    @GetMapping("api/Order/selectOrderAllByState")
+    @ApiOperation(value = "按状态查询所有的订单，不输入值查询所有，1未下单，2已下单，3已支付", notes = "按状态查询所有的订单，不输入值查询所有，1未下单，2已下单，3已支付")
+    public R orderAll(Integer state){
+        return orderService.selectOrderAllByState(state);
     }
 
+    @PutMapping("api/order/updataOrderMenuNum")
+    @ApiOperation(value = "根据座位号，改变单个菜品的数量，若是无该菜品，添加菜品，有该菜品，num为1为加一，-1为减一",
+    notes = "根据座位号，改变单个菜品的数量，若是无该菜品，添加菜品，有该菜品，num为1为加一，-1为减一")
+    public R updataOrderMenuNum(Integer tid,Integer num, Integer mid) {
+        return orderMenuService.updataOrderMenuNum(tid,num,mid);
+    }
+
+    @PutMapping("api/order/placeAnOrder")
+    @ApiOperation(value = "根据座位号确定下单，并计算价格",notes = "确定下单，并计算价格")
+    public R placeAnOrder(Integer tid) {
+        return orderService.placeAnOrder(tid);
+    }
+
+    @PutMapping("api/order/choosePungecydegree")
+    @ApiOperation(value = "选择辣度", notes = "选择辣度")
+    public R choosePungecydegree(Integer tid,Integer pungecydegree) {
+        return orderService.choosePungecydegree(tid,pungecydegree);
+    }
+
+    @DeleteMapping("api/order/deleteOrder")
+    @ApiOperation(value = "按订单id删除订单", notes = "按订单id删除订单")
+    public R deleteOrder(Integer oid) {
+        return orderService.deleteOrder(oid);
+
+    }
+    @PutMapping("/api/order/paySuccess")
+    @ApiOperation(value = "支付成功",notes = "支付成功")
+    public R paySuccess(  Integer oid) {
+        return orderService.paySuccess(oid);
+
+    }
 }

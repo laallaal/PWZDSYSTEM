@@ -14,6 +14,6 @@ public class OrderMenu {
     private int oid;
     private int mid;
     private int num;
-    public List<Menu> menuList;
+    public Menu menu;
 
 }

@@ -14,8 +14,8 @@ public class Order {
     private Integer tid;
 
     private Integer hid;
-    private double sumPrice;
-    private int pungecydegree;
+    private Double sumPrice;
+    private Integer pungecydegree;
 
     private Integer state;
     private String orderNum;

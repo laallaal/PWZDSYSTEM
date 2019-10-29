@@ -11,7 +11,7 @@ public class Menu {
     @TableId(type = IdType.AUTO)
     private Integer id;
 
-    private String name;
+    private String fName;
 
     private Float money;
 
