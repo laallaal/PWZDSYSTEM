@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/reset.css" type="text/css"  rel="stylesheet" />
+<link href="css/style.css" type="text/css"  rel="stylesheet" />
+<title>台况-首页</title>
+<script type="text/javascript" src="js/vue.min.js"></script>
+</head>
+
+<script type="text/javascript">
+
+	alert("111111111111111111");
+	var appmenu = new Vue({
+		el: '#showtables',
+		data: {
+			tables:[
+				{ state: 1 },
+				{ state: 2 },
+				{ state: 3 }
+			]
+		}
+	});
+
+	$(function(){
+
+		alert("aaaaaaaaaaaaa");
+		$.ajax({
+			url:"admin/selectAllTables",
+			success:function(res){
+				appmenu.tables=res;
+			}
+		})
+	})
+
+</script>
+
+<body>
+<header>
+	<h1>台 况</h1>
+</header>
+<div class="nav">
+	<ul>
+		<li><a href="#" class="active">全 部</a></li>
+    	<li><a href="#">大 厅</a></li>
+        <li><a href="#">包 间</a></li>
+        <li><a href="#">卡 座</a></li>
+    </ul>
+</div>
+<div class="content" >
+	<ul class="desk"  id="showtables">
+		<li v-for="table in tables" >
+
+			<a  v-else-if="table.data.state == 1" style="position: relative; width: 170px; height: 89px;" >
+				<img src="img/subscribe.png" alt="预定"/>
+				<span style="position: absolute; bottom: 0; left: 0;"><p class="sub_txt"><span class="p_num">预   定</span></p></span>
+			</a>
+
+			<!--<a  v-else-if="table.data.state == 2" style="position: relative; width: 170px; height: 89px;" >
+				<img src="img/service.png" alt="就餐"/>
+				<span style="position: absolute; bottom: 0; left: 0;"><p class="use_txt">就<span class="p_num"></span>餐</p></span>
+			</a>
+
+			<a  v-else-if="table.data.state == 3" style="position: relative; width: 170px; height: 89px;" >
+				<img src="img/unused.png" alt="空台" >
+				<span style="position: absolute; bottom: 0; left: 0;"><p class="use_txt">空<span class="p_num"></span>台</p></span>
+			</a>
+-->
+			<p class="d_num">{{table.data.tname}}</p>
+
+		</li>
+
+		<div id="open">
+			<div class="white_content" id="operate">
+				<a class="close" href="javascript:void(0)" onclick = "document.getElementById('open').style.display='none';document.getElementById('operate').style.display='none'"><img src="img/close.png" /></a>
+				<h2>桌号：<span>DT002</span></h2>
+				<a href="Order meal.html"  class="orange_btn right"/>确定开台</a>
+			</div>
+		</div>
+
+	</ul>
+
+</div>
+
+<div class="footer-space"></div> 
+<footer>
+	<ul>
+    	<li><a href="begin theatrical performance.html"><img src="img/footer_1.png" /><p class="cur">台 况</p></a></li>
+        <li><a href="bill.html"><img src="img/footer_02.png" /><p>账 单</p></a></li>
+    	<li><a href="call out.html"><img src="img/footer_03.png" /><p>呼 叫</p></a></li>
+        <li><a href="more.html"><img src="img/footer_04.png" /><p>更 多</p></a></li>
+    </ul>
+</footer>
+</body>
+
+
+
+<script type="text/javascript">
+new Vue({
+  el: '#app',
+  data: {
+    seen: true,
+    ok: true
+  }
+})
+</script>
+
+
+
+
+</html>

@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,13 +25,19 @@ public class AdminController {
     @Resource
     private RedisTemplate<String, String>  redisTemplate;
 
-    @PostMapping("/selectAllTables")
+    @GetMapping("/selectAllTables")
     @ApiOperation(value = "展示全部餐桌")
     public R selectAllTables() {
 
+        String alltables = redisTemplate.opsForValue().get("ALLTABLES");
 
-        redisTemplate.opsForValue().set("aaa","assssssssssaaa");
+        System.out.println("1111111111111111111111111111111"+alltables);
 
+        if (alltables != null) {
+
+            return R.getOk(alltables);
+
+        }
 
         return R.getOk(adminService.selectAllTables());
 
@@ -40,6 +47,13 @@ public class AdminController {
     @ApiOperation(value = "按类别展示餐桌")
     public R selectTablesByTypeId(String tfrom) {
 
+        String tables = redisTemplate.opsForValue().get(tfrom);
+
+        if (tables != null) {
+
+            return R.getOk(tables);
+        }
+
         return R.getOk(adminService.selectTablesByTypeId(tfrom));
     }
 
@@ -48,8 +62,18 @@ public class AdminController {
     @ApiOperation(value = "搜索查询餐桌")
     public R selectTableByInput(String str) {
 
+        String tables = redisTemplate.opsForValue().get(str);
+
+        if (tables != null) {
+
+            return R.getOk(tables);
+        }
+
         return R.getOk(adminService.selectTableByInput(str));
     }
+
+
+
 
 
 
