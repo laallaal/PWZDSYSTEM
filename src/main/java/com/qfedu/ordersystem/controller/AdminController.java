@@ -17,7 +17,7 @@ public class AdminController {
     @RequestMapping
     public R selectAllTables() {
 
-        return R.getOk(adminService.selectAllTables());
+        return R.getOK(adminService.selectAllTables());
     }
 
 

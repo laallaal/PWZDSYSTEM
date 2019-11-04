@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+
 public interface AdminDao extends BaseMapper<Admin> {
 
     @Select("select * from tables")
