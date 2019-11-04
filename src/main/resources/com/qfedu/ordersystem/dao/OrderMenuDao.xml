@@ -30,4 +30,8 @@
     <delete id="deleteByOid" parameterType="integer">
         delete from order_menu where oid = #{oid}
     </delete>
+
+    <delete id="deleteOrderMenuByTidAndMid" parameterType="com.qfedu.ordersystem.entry.OrderMenu">
+        delete from order_menu where oid = #{oid} and mid = #{mid}
+    </delete>
 </mapper>

@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>订单列表</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link href="media/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<script  type="text/javascript" src="media/js/jquery-1.9.1.min.js"></script>
+	<link href="media/bootstrap-3.3.7-dist/js/npm.js">
+	<script  type="text/javascript" src="media/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="media/js/vue.min.js"></script>
+	<script  type="text/javascript" src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script type="text/javascript" src="media/js/vue.min.js"></script>
+	<style type="text/css">
+		#daohanglan button{
+			margin-left: 30px;
+			margin-right: 30px;
+			height: 35px;
+			width: 80px;
+			background-color: #5bc0de;
+		}
+		#daohanglan{
+			margin-left: 80%;
+			margin-top: 20px;
+			margin-bottom: 20px;
+
+		}
+		#div1{
+			background-color: #7b3f25;
+			padding: 10px;
+		}
+		#t1 tr{
+			vertical-align:center;
+			text-align: center
+		}
+		#t1 th{
+			vertical-align:center;
+			text-align: center
+
+		}
+		img{
+			width: 20px;
+			height: 20px;
+			margin: 4px;
+		}
+	</style>
+	<script>
+		$(function () {
+			jiazai();
+		});
+
+		localStorage.getItem("tid");
+		var num = 0;
+		var sunMoney = 0;
+
+		function jiazai() {
+			var tid = localStorage.getItem(tid);
+			$.ajax({
+				url:"api/order/selectOrderAllByState",
+				method:"get",
+				success: function (data) {
+					order = data.data;
+					$.each(order,function (i,value) {
+						var state = null;
+						if (this.state == 1) {
+							state = "未下单"
+						} else if (this.state == 2) {
+							state = "已下单"
+						} else if(this.state == 3){
+							state = "已付款"
+						}
+						var tr = "<tr id=\"tr_" + i + "\" class=\" " + this.mid + "\">" +
+								"<th scope=\"row\"  >" + i + "</th>" +
+								"<td >" + this.orderName + "</td>" +
+								"<td>" + this.tid +"</td>" +
+								"<td \">" + this.sumPrice + "</td>" +
+								"<td \">" + state + "</td>" +
+								"<td >" +
+								"<button type=\"button\" class=\"btn btn-default\" onclick=\"delOrderById("+ this.id +"," + i +")\" style=\"width: 60px\" aria-label=\"Left Align\">" +
+								"<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>" +
+								"</button>" +
+								"</td>" +
+								"</tr>";
+						$("#t1").append(tr);
+					});
+				}
+			})
+		}
+		function delOrderById(id,i) {
+			tr = "tr_" + i
+			$.ajax({
+				url:"api/order/deleteOrderMenuByTidAndMid",
+				data:{"oid": id},
+				method: "delete",
+				success:function (data) {
+					if (data.msg == "OK") {
+						alert("删除成功");
+						$("#" + tr).remove();
+					}
+				}
+			})
+		}
+
+
+	</script>
+</head>
+<body>
+<div>
+	<div class="jumbotron">
+		<h1>订单系统</h1>
+	</div>
+</div>
+<div id="menu">
+<table class="table table-striped" id="tab">
+	<thead >
+	<tr >
+		<th style="text-align: center">序号</th>
+		<th style="text-align: center">订单号</th>
+		<th style="text-align: center">座位号</th>
+		<th style="text-align: center">金额</th>
+		<th style="text-align: center">订单状态</th>
+		<th style="text-align: center">操作</th>
+	</tr>
+	</thead>
+	<tbody id="t1">
+	</tbody>
+</table>
+</div>
+</body>
+</html>
+

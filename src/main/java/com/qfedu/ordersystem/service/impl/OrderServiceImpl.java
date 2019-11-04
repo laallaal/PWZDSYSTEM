@@ -125,4 +125,42 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
     }
 
 
+
+
+    @Override
+    public R deleteOrderMenuByTid(Integer tid) {
+        String s = redisTemplate.opsForValue().get("位置:" + tid);
+        if (s == null || s.equals("")) {
+            return R.setERROR();
+        }
+
+        Integer oid = Integer.parseInt(s);
+        Integer integer = orderMenuDao.deleteByOid(oid);
+        if (integer > 0) {
+            return R.getOK("ok");
+        }else {
+            return R.setERROR();
+        }
+    }
+
+    @Override
+    public R deleteOrderMenuByTidAndMid(Integer tid, Integer mid) {
+        String s = redisTemplate.opsForValue().get("位置:" + tid);
+        if (s == null || s.equals("")) {
+            return R.setERROR();
+        }
+        Integer oid = Integer.parseInt(s);
+        OrderMenu orderMenu = new OrderMenu();
+        orderMenu.setOid(oid);
+        orderMenu.setMid(mid);
+        int row = orderMenuDao.deleteOrderMenuByTidAndMid(orderMenu);
+        if (row > 0) {
+            return R.getOK("ok");
+        }else {
+            return R.setERROR();
+        }
+    }
+
+
+
 }

@@ -25,5 +25,9 @@ public interface MenuDao extends BaseMapper<Menu> {
     List<Menu> selectFood(String fname);
 
 
+
+    @Select ("SELECT m.*,s.stock FROM menu m INNER JOIN menu_stock s ON m.parent = 3 AND m.id = s.mid;")
+    Menu queryAllDrinks();
+
     Menu selectById(int id);
 }

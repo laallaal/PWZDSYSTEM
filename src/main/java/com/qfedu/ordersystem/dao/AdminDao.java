@@ -47,4 +47,11 @@ public interface AdminDao extends BaseMapper<Admin> {
     @Insert("insert into appoint(tname,pname,pnum,rid,atime) values(#{tname},#{pname},#{pnum},#{rid},now())")
     void addAppoint(Appoint appoint);
 
+
+    @Select ("SELECT COUNT(*) FROM admin where e_name = #{username} AND `password` = #{password};")
+    boolean login(String username, String password);
+
+
+    @Select("select * from admin where id = #{id}")
+    Admin getById(Integer id);
 }

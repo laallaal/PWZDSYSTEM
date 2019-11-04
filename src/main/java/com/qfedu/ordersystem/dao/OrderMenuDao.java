@@ -18,4 +18,7 @@ public interface OrderMenuDao extends BaseMapper<OrderMenu> {
     Integer selectByOidAndMid(OrderMenu orderMenu);
 
     Integer deleteByOid(Integer oid);
+
+    int deleteOrderMenuByTidAndMid(OrderMenu orderMenu);
+
 }

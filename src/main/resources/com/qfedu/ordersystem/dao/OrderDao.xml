@@ -88,4 +88,12 @@
     <update id="updateStateById" parameterType="integer">
       update `order` set state = 3 where id = #{oid}
     </update>
+
+
+  <select id="createOrderAndStock" statementType="CALLABLE">
+    CALL pro_orderandstock(#{tid,jdbcType=INTEGER,mode=IN}, #{uid,jdbcType=INTEGER,mode=IN},
+                           #{mid,jdbcType=INTEGER,mode=IN},#{num,jdbcType=INTEGER,mode=IN}, #{result,jdbcType=INTEGER,mode=OUT})
+  </select>
+
+
   </mapper>

@@ -2,8 +2,11 @@ package com.qfedu.ordersystem.controller;
 
 import com.qfedu.ordersystem.entry.Appoint;
 import com.qfedu.ordersystem.service.AdminService;
+import com.qfedu.ordersystem.service.StockService;
 import com.qfedu.ordersystem.vo.R;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,6 +24,9 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    StockService stockService;
 
     @Resource
     private RedisTemplate<String, String>  redisTemplate;
@@ -99,6 +105,45 @@ public class AdminController {
     }
 
 
+
+    @GetMapping(value = "/admin/queryAllDrinks")
+    public R queryAllDrinks() {
+        return R.setResult (true, adminService.queryAllDrinks ());
+    }
+
+    @PostMapping(value = "/admin/addDrinks")
+    @ApiOperation(value = "addDrinks", notes = "添加")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "菜品id", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "tid", value = "桌子id", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "uid", value = "用户id", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "num", value = "所选酒水数量", required = true, dataType = "Integer")
+    })
+    public R addDrinks(Integer tid, Integer uid, Integer id, Integer num) {
+        int stock = stockService.selectByMid(id);
+        if (stock <= 0) {
+            return R.setResult (false, "库存不足");
+        } else {
+            return R.setResult (true, adminService.addDrinks (tid, uid, id, num));
+        }
+    }
+
+    @GetMapping(value = "/selectRestaurant")
+    @ApiOperation(value = "selectRestaurant", notes = "根据酒店id查询酒店详情")
+    public R restaurantDetail(Integer id){
+        return R.setResult (true,adminService.selectRestaurant (id));
+    }
+
+    @GetMapping(value = "/admin/selectAdmin")
+    @ApiOperation(value = "selectAdmin", notes = "查询员工详情")
+    public R selectAdmin(Integer id){
+        return R.setResult (true,adminService.getById(id));
+    }
+
+    @GetMapping(value = "/admin/login")
+    public R login (String username,String password ){
+        return R.setResult (adminService.login(username,password),"登录成功");
+    }
 
 
 }

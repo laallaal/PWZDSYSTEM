@@ -1,9 +1,7 @@
 package com.qfedu.ordersystem.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qfedu.ordersystem.entry.Appoint;
-import com.qfedu.ordersystem.entry.Restaurant;
-import com.qfedu.ordersystem.entry.Tables;
+import com.qfedu.ordersystem.entry.*;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Appinfo;
 
 import java.util.List;
@@ -25,5 +23,13 @@ public interface AdminService  {
     void addAppoint(Appoint appoint);
 
 
-    /*Tables intoTable(int tid, int stateid);*/
+    Menu queryAllDrinks();
+
+    int addDrinks(Integer tid,Integer uid,Integer id,Integer num);
+
+    boolean login(String username, String password);
+
+    Restaurant selectRestaurant(Integer id);
+
+    Admin getById(Integer id);
 }

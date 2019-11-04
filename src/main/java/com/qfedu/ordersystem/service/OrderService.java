@@ -24,4 +24,10 @@ public interface OrderService extends IService<Order> {
     R deleteOrder(Integer oid);
 
     R paySuccess(Integer oid);
+
+
+
+    R deleteOrderMenuByTid(Integer tid);
+
+    R deleteOrderMenuByTidAndMid(Integer tid, Integer mid);
 }

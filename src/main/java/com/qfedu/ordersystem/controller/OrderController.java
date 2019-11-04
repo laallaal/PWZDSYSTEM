@@ -68,4 +68,25 @@ public class OrderController {
         return orderService.paySuccess(oid);
 
     }
+
+
+    @DeleteMapping("/api/order/deleteOrderMenuByTid")
+    @ApiOperation(value = "删除对应客户的所有菜品",notes = "删除对应客户的所有菜品")
+    public R deleteOrderMenuByTid(Integer tid) {
+        if (tid == null) {
+            return R.setERROR();
+        }
+        return orderService.deleteOrderMenuByTid(tid);
+
+    }
+
+    @DeleteMapping("/api/order/deleteOrderMenuByTidAndMid")
+    @ApiOperation(value = "删除对应客户的单个菜品",notes = "删除对应客户的单个菜品")
+    public R deleteOrderMenuByTid(Integer tid, Integer mid) {
+        if (tid == null || mid ==null) {
+            return R.setERROR();
+        }
+        return orderService.deleteOrderMenuByTidAndMid(tid,mid);
+
+    }
 }
