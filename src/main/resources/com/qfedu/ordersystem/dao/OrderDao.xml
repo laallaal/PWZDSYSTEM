@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.ordersystem.dao.OrderDao" >
+  <resultMap id="BaseResultMap" type="com.qfedu.ordersystem.entry.Order" >
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="tid" property="tid" jdbcType="INTEGER" />
+      <result column="pungecyDegree" property="pungecydegree" jdbcType="INTEGER" />
+      <result column="sum_price" property="sumPrice" jdbcType="DOUBLE" />
+      <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+      <result column="state" property="state" jdbcType="INTEGER" />
+    </resultMap>
+
+  <insert id="insertSelective" parameterType="com.qfedu.ordersystem.entry.Order" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+      insert into `order`
+      <trim prefix="(" suffix=")" suffixOverrides="," >
+        <if test="id != null" >
+          id,
+        </if>
+        <if test="tid != null" >
+          tid,
+        </if>
+        <if test="pungecydegree != null" >
+          pungecyDegree,
+        </if>
+        <if test="sumPrice != null" >
+          sum_price,
+        </if>
+        <if test="orderNum != null" >
+          order_num,
+        </if>
+        <if test="state != null" >
+          state,
+        </if>
+      </trim>
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+        <if test="id != null" >
+          #{id,jdbcType=INTEGER},
+        </if>
+        <if test="tid != null" >
+          #{tid,jdbcType=INTEGER},
+        </if>
+        <if test="pungecydegree != null" >
+          #{pungecydegree,jdbcType=INTEGER},
+        </if>
+        <if test="sumPrice != null" >
+          #{sumPrice,jdbcType=DOUBLE},
+        </if>
+        <if test="orderNum != null" >
+          #{orderNum,jdbcType=VARCHAR},
+        </if>
+        <if test="state != null" >
+          #{state,jdbcType=INTEGER},
+        </if>
+      </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.qfedu.ordersystem.entry.Order" >
+      update `order`
+      <set >
+        <if test="tid != null" >
+          tid = #{tid,jdbcType=INTEGER},
+        </if>
+        <if test="pungecydegree != null" >
+          pungecyDegree = #{pungecydegree,jdbcType=INTEGER},
+        </if>
+        <if test="sumPrice != null" >
+          sum_price = #{sumPrice,jdbcType=DOUBLE},
+        </if>
+        <if test="orderNum != null" >
+          order_num = #{orderNum,jdbcType=VARCHAR},
+        </if>
+        <if test="state != null" >
+          state = #{state,jdbcType=INTEGER},
+        </if>
+      </set>
+      where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectOrderAllByState" resultType="integer" resultMap="BaseResultMap">
+      select * from `order`
+      <if test="state != null and state != 0 ">
+        where state = #{state}
+      </if>
+    </select>
+    <delete id="deleteOrder" parameterType="int">
+      delete from `order` where id = #{oid}
+    </delete>
+    <update id="updateStateById" parameterType="integer">
+      update `order` set state = 3 where id = #{oid}
+    </update>
+  </mapper>

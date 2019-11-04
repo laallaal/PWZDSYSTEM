@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.ordersystem.dao.MenuDao" >
+  <resultMap id="BaseResultMap" type="com.qfedu.ordersystem.entry.Menu" >
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="img_url" property="imgUrl" jdbcType="INTEGER" />
+      <result column="level" property="level" jdbcType="INTEGER" />
+      <result column="name" property="fName" jdbcType="INTEGER" />
+      <result column="parent" property="parent" jdbcType="INTEGER" />
+      <result column="money" property="money" jdbcType="INTEGER" />
+
+  </resultMap>
+<select id="selectById" parameterType="int" resultMap="BaseResultMap">
+  select * from menu where id = #{id}
+</select>
+
+  </mapper>
