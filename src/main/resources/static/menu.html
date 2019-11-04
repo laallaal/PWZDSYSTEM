@@ -1,0 +1,119 @@
+<h1></h1><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/reset.css" type="text/css"  rel="stylesheet" />
+<link href="css/style.css" type="text/css"  rel="stylesheet" />
+<script src="js/vue.min.js"></script>
+<script src="js/jquery-3.3.1.js"></script>
+<title>菜谱点餐</title>
+</head>
+
+<body>
+<header>
+	<a href="#" class="return"><img src="img/return.png" /></a>
+    <p class="switch"><a href="Order meal.html">快速点餐</a><a href="#" class="selected">菜谱点餐</a></p>
+</header>
+<a href="My menu.html" class="amount">
+	已点<span>3</span>
+</a>
+<ul class="classes">
+	<li>主厨推荐</li>
+    <li class="choosed">招&nbsp;牌&nbsp;菜<span class="sub">3</span></li>
+  	<li >新品推荐</li>
+  	<li onclick="hostcai(1)">经典热菜</li>
+  	<li onclick="hostcai(2)">正宗川菜</li>
+  	<li onclick="hostcai(3)">水产海鲜</li>
+  	<li onclick="hostcai(4)">精品小食</li>
+  	<li onclick="hostcai(5)">精美凉菜</li>
+  	<li onclick="hostcai(6)">主&nbsp;&nbsp;&nbsp;&nbsp;食</li>
+  	<li onclick="hostcai(7)">面&nbsp;&nbsp;&nbsp;&nbsp;食</li>
+    <li onclick="hostcai(8)">酒水饮料</li>
+</ul>
+
+
+<div id="menulist">
+	<ul class="dishes">
+		<div>
+
+		</div>
+		<div>
+			<li v-for="m in obj.data">
+				<img src="m.img_url"/>
+				<h4>{{m.fname}}</h4>
+			</li>
+		</div>
+
+			<!--<li v-for="m in obj.data">
+				<img src = "m.img_url"/>
+				<h4>{{m.fname}}</h4>
+				<p class="money">{{m.money}}</p>
+				<a href="#" class="add"><img src="img/add.png" /></a>
+			</li>-->
+	</ul>
+</div>
+<div id="menulist1"  >
+	<h1 v-for="m in obj.data" >{{m.fname}}</h1>
+</div>
+<div class="footer-space"></div>  
+<footer>
+	<ul>
+    	<li><a href="begin theatrical performance.html"><img src="img/footer_1.png" /><p class="cur">台 况</p></a></li>
+        <li><a href="bill.html"><img src="img/footer_02.png" /><p>账 单</p></a></li>
+    	<li><a href="call out.html"><img src="img/footer_03.png" /><p>呼 叫</p></a></li>
+        <li><a href="more.html"><img src="img/footer_4.png" /><p>更 多</p></a></li>
+    </ul>    
+</footer>
+
+
+<!--<div id="menulist"  >
+	<h1 v-for="m in obj.data" >site : {{m.fname}}</h1>
+</div>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#list',
+		data: {
+			site: [1,2,4,5,6],
+			url: "www.runoob.com",
+			alexa: "10000"
+		},
+		methods: {
+			details: function() {
+				return  this.site + " - 学的不仅是技术，更是梦想！";
+			}
+		}
+	})
+</script>-->
+<script>
+	function hostcai(id){
+		$.ajax({
+			url: "queryMenu",
+			data:{"level":id},
+			method:"post",
+			success:function (data) {
+				menu.obj=data;
+			}
+		})
+	}
+</script>
+<script type="text/javascript">
+
+	var menu = new Vue({
+		el:"#menulist",
+		data:{
+			obj:{}
+		}
+	});
+	$.ajax({
+		url:"queryMenu",
+		data:{"level":1},
+		method:"post",
+		success:function (data) {
+			menu.obj=data;
+		}
+	})
+</script>
+
+</body>
+</html>

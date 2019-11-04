@@ -29,18 +29,7 @@ public class AdminController {
     @ApiOperation(value = "展示全部餐桌")
     public R selectAllTables() {
 
-        String alltables = redisTemplate.opsForValue().get("ALLTABLES");
-
-        System.out.println("1111111111111111111111111111111"+alltables);
-
-        if (alltables != null) {
-
-            return R.getOk(alltables);
-
-        }
-
-        return R.getOk(adminService.selectAllTables());
-
+        return R.getOK(adminService.selectAllTables());
     }
 
     @PostMapping("/selectTablesByTypeId")
@@ -51,10 +40,10 @@ public class AdminController {
 
         if (tables != null) {
 
-            return R.getOk(tables);
+            return R.getOK(tables);
         }
 
-        return R.getOk(adminService.selectTablesByTypeId(tfrom));
+        return R.getOK(adminService.selectTablesByTypeId(tfrom));
     }
 
 
@@ -66,10 +55,10 @@ public class AdminController {
 
         if (tables != null) {
 
-            return R.getOk(tables);
+            return R.getOK(tables);
         }
 
-        return R.getOk(adminService.selectTableByInput(str));
+        return R.getOK(adminService.selectTableByInput(str));
     }
 
 

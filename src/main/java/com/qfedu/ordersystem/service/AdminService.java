@@ -5,7 +5,7 @@ import com.qfedu.ordersystem.entry.Tables;
 
 import java.util.List;
 
-public interface AdminService extends IService<Tables> {
+public interface AdminService  {
 
     List<Tables> selectAllTables();
 

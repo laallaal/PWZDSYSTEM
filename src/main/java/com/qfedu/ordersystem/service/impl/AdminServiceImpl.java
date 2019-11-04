@@ -1,13 +1,12 @@
 package com.qfedu.ordersystem.service.impl;
 
 
-import com.alibaba.druid.support.json.JSONUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qfedu.ordersystem.dao.AdminDao;
-import com.qfedu.ordersystem.entry.Admin;
 import com.qfedu.ordersystem.entry.Tables;
 import com.qfedu.ordersystem.service.AdminService;
 import com.qfedu.ordersystem.utils.JsonUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,10 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class AdminServiceImpl extends ServiceImpl<AdminDao, Tables> implements AdminService {
+public class AdminServiceImpl implements AdminService {
 
+    @Autowired
+    private  AdminDao adminDao;
 
     @Resource
     private RedisTemplate<String, String> redisTemplate;
@@ -24,7 +25,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminDao, Tables> implements A
     @Override
     public List<Tables> selectAllTables() {
 
-        List<Tables> tables = getBaseMapper().selectAllTables();
+        List<Tables> tables = adminDao.selectAllTables();
 
         System.out.println(tables);
 
@@ -41,7 +42,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminDao, Tables> implements A
     @Override
     public List<Tables> selectTablesByTypeId(String tfrom) {
 
-        List<Tables> tables = getBaseMapper().selectTablesByTypeId(tfrom);
+        List<Tables> tables = adminDao.selectTablesByTypeId(tfrom);
 
         redisTemplate.opsForValue().set(tfrom, tables.toString());
 
@@ -52,10 +53,13 @@ public class AdminServiceImpl extends ServiceImpl<AdminDao, Tables> implements A
     public List<Tables> selectTableByInput(String str) {
 
 
-        List<Tables> tables = getBaseMapper().selectTableByInput(str);
+        List<Tables> tables = adminDao.selectTableByInput(str);
 
         redisTemplate.opsForValue().set(str, tables.toString());
 
         return tables;
     }
+
+
+
 }

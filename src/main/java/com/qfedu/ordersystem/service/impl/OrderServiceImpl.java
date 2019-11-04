@@ -7,6 +7,7 @@ import com.qfedu.ordersystem.dao.OrderMenuDao;
 import com.qfedu.ordersystem.entry.Order;
 import com.qfedu.ordersystem.entry.OrderMenu;
 import com.qfedu.ordersystem.service.OrderService;
+
 import com.qfedu.ordersystem.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -36,25 +37,25 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
         order.setState(1);
         int oid = getBaseMapper().insertSelective(order);
         redisTemplate.opsForValue().set("位置:" + order.getTid(),order.getId() + "");
-        return R.getOk(oid);
+        return R.getOK(oid);
     }
 
     @Override
     public R selectOrderMenuByTid(int tid) {
         String s = redisTemplate.opsForValue().get("位置:" + tid);
         if (s == null || s.equals("")) {
-            return R.setError();
+            return R.setERROR();
         }
         Integer oid = Integer.parseInt(s);
         List<OrderMenu> orderMenuList= orderMenuDao.selectOrderMenuByTid(oid);
-        return R.getOk(orderMenuList);
+        return R.getOK(orderMenuList);
     }
 
     @Override
     public R placeAnOrder(Integer tid) {
         String s = redisTemplate.opsForValue().get("位置:" + tid);
         if (s == null || s.equals("")) {
-            return R.setError();
+            return R.setERROR();
         }
         Integer oid = Integer.parseInt(s);
         double sumPrice = 0;
@@ -71,9 +72,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
         int rows = getBaseMapper().updateByPrimaryKey(order);
         if (rows > 0){
             redisTemplate.delete("位置:" + tid);
-            return R.getOk("ok");
+            return R.getOK("ok");
         }else {
-            return R.setError();
+            return R.setERROR();
         }
     }
 
@@ -81,7 +82,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
     public R choosePungecydegree(Integer tid, Integer pungecydegree) {
         String s = redisTemplate.opsForValue().get("位置:" + tid);
         if (s == null || s.equals("")) {
-            return R.setError();
+            return R.setERROR();
         }
 
         Integer oid = Integer.parseInt(s);
@@ -90,16 +91,16 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
         order.setPungecydegree(pungecydegree);
         int rows = getBaseMapper().updateByPrimaryKey(order);
         if (rows > 0){
-            return R.getOk("ok");
+            return R.getOK("ok");
         }else {
-            return R.setError();
+            return R.setERROR();
         }
     }
 
     @Override
     public R selectOrderAllByState(Integer state) {
         List<Order> orderlist = getBaseMapper().selectOrderAllByState(state);
-        return R.getOk(orderlist);
+        return R.getOK(orderlist);
     }
 
     @Override
@@ -107,9 +108,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
         Integer row = getBaseMapper().deleteOrder(oid);
         Integer count = orderMenuDao.deleteByOid(oid);
         if (row > 0){
-            return R.getOk("ok");
+            return R.getOK("ok");
         }else {
-            return R.setError();
+            return R.setERROR();
         }
     }
 
@@ -117,9 +118,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
     public R paySuccess(Integer oid) {
         Integer row = getBaseMapper().updateStateById(oid);
         if (row > 0){
-            return R.getOk("ok");
+            return R.getOK("ok");
         }else {
-            return R.setError();
+            return R.setERROR();
         }
     }
 

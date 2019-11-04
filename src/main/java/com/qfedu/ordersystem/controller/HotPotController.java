@@ -28,7 +28,7 @@ public class HotPotController {
     @ApiOperation(value = "",notes = "展示锅底")
     public R selectGuoDi() {
 
-        return R.getOk(hotPotService.selectGuoDi());
+        return R.getOK(hotPotService.selectGuoDi());
 
     }
 
@@ -39,7 +39,7 @@ public class HotPotController {
 
         hotPotService.changeGuoDi(id, imgId, img);
 
-        return R.getOk("success");
+        return R.getOK("success");
     }
 
 

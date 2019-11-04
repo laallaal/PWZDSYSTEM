@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+		    <meta charset="UTF-8">
+		    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+		    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		    <!--<meta name="renderer" content="webkit|ie-comp|ie-stand">-->
+		    <meta name="description" content="一本菜谱一棵树,点菜易手机电子菜单,无需下载直接使用,节约资源,低碳环保" />
+		    <meta name="keywords" content="点菜易,电子菜单,手机菜单,手机菜谱,平板菜谱,移动菜谱,移动菜单,智能菜谱,智能菜单,环保菜单,环保菜谱,低碳菜单,低碳菜谱,手机点菜,平板点菜,智能手机点菜,平板电脑点菜,IPAD点菜,IPAD菜谱,IPAD菜单,节约用纸" />
+		    <meta name="baidu-site-verification" content="WA0RNh9CVR" />
+		    <meta name="baidu-site-verification" content="6tC7f0aPbo" />
+		    <meta property="wb:webmaster" content="65ea0610314224af" />
+		    <title>点菜易电子菜单-低碳环保做实事</title>
+		    <link rel="shortcut icon" href="./index/image/logo2x.png" type="image/x-icon" />
+		    <script src="./js/jquery-3.3.1.js"></script>
+		    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+		    <link rel="stylesheet" href="./css/style.css"/>
+		    <script src="/js/bootstrap.min.js"></script>
+		    
+		    <!--[if IE]>
+		    <!--<link rel="stylesheet" href="styles/fix_internet_explore.css">-->
+		    <!--<![endif]&ndash;&gt;-->
+		    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		    <!--[if lt IE 9]>
+		    <script src="./index/js/html5shiv.min.js"></script>
+		    <script src="./index/js/respond.min.js"></script>
+		    <![endif]-->
+		
+		    <!--[if IE 6]>
+		    <link rel="stylesheet" type="text/css" href="./index/css/bootstrap-ie6.css">
+		    <link rel="stylesheet" type="text/css" href="./index/css/ie.css">
+		    <![endif]-->
+		
+		
+		    <title></title>
+		    <script type="text/jscript">
+			function CheckForm(){
+				var bianhaoorguanjianzi=document.getElementById("u").value;
+				if (isNaN(bianhaoorguanjianzi)){
+				    document.getElementById("foru").action="forguanjianzi.asp";
+					}
+				else{
+				    document.getElementById("foru").action="forbianhao.asp";
+					}
+				document.getElementById("foru").submit();
+				}
+		    </script>
+		</head>
+		<body>
+		<nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+		    <div class="container">
+		
+		        <!-- Brand and toggle get grouped for better mobile display -->
+		        <div class="navbar-header">
+		            <button type="button" class="navbar-toggle collapsed navbar-toggle-try" data-toggle="collapse" data-target="#try-menu" aria-expanded="false">
+		                <span class="try-button">&nbsp;免费使用 <span class="caret"></span>&nbsp;</span>
+		            </button>
+		            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#links" aria-expanded="false">
+		                <span class="sr-only">Toggle navigation</span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		            </button>
+		            <!--<a class="navbar-brand" href="#"><image class="image-responsive" src="./images/logo1.png" alt=""/></a>-->
+		            <a class="navbar-brand" href="#"><img class="img-responsive" src="./image/logo1.png" style="max-width:120px; margin-top: -8px;" alt=""/></a>
+		        </div>
+		        <!-- Collect the nav links, forms, and other content for toggling -->
+		        <div class="collapse navbar-collapse" id="links">
+		            <ul class="nav navbar-nav">
+		                <!--<li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a></li>-->
+		                <li><a href="/index.asp"  >首页</a></li>
+		                <li><a href="./index/gydcy.html">关于点菜易</a></li>
+		                <li><a href="./index/dcyxy.asp">点菜易学院</a></li>
+		                <li><a href="./index/cgal.asp">成功案例</a></li>
+		                <li><a href="./index/zsdl.asp">招商代理</a></li>
+		                <li><a href="./index/lxwm.asp">联系我们</a></li>
+		                <li><a href="./index/forlogin1.asp">饭店登录</a></li>
+		            </ul>
+		
+		            <div class="nav navbar-nav navbar-right hidden-xs hidden-sm" >
+		                <li class="dropdown">
+		                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+		                        <span class="try-button">&nbsp;免费使用 <span class="caret"></span>&nbsp;</span>
+		                    </a>
+		                    <ul class="dropdown-menu">
+		                        <li><a href="/1.asp?u=1001"  >点菜试用</a></li>
+		                        <li><a href="/login.asp?u=1001&username=2222&password=2222">后台试用</a></li>
+		                        <li><a href="/shenqing.asp"  >申请使用</a></li>
+		                    </ul>
+		                </li>
+		            </div>
+		        </div><!-- /.navbar-collapse -->
+		        <div class="collapse navbar-collapse hidden-lg hidden-md "  id="try-menu">
+		            <ul class="nav navbar-nav hidden-lg hidden-md">
+		                <li><a href="/1.asp?u=1001"  >点菜试用</a></li>
+		                <li><a href="/login.asp?u=1001&username=2222&password=2222">后台试用</a></li>
+		                <li><a href="/shenqing.asp"  >申请使用</a></li>
+		            </ul>
+		        </div>
+		    </div><!-- /.container -->
+		</nav>
+		        <div class="jumbotron index-banner1">
+		            <div class="container top-banner1">
+		                <!--<div class="center-block">-->
+		                    <!--[if lt IE 9]>
+		                    <h1>&nbsp;</h1>
+		                    <![endif]-->
+		                    <h1 class="text-center" >"e"时代，"易"管理</h1>
+		                    <h4 class="text-center"> 把 餐 厅 开 到 客 人 手 机 上</h4>
+		                <form  method="post" id="foru" name="foru" action="/forbianhao.asp" onSubmit="return CheckForm();">
+		                    <div class="form-inline search-form"><input id="str" name="str" type="hidden" value="1">
+		                        <input type="text" class="form-control input-lg search-for-food" style="width: 50%;float: left;border-bottom-right-radius: 0px;border-top-right-radius: 0px;" id="u" name="u" placeholder="海底捞" onclick="if(this.value=='1001'){this.value='';}" onblur="if(this.value==''){this.value='1001';}"/>
+		                        <button type="submit" style="border-bottom-left-radius: 0px;border-top-left-radius: 0px;" class="btn btn-lg btn-primary btn-u">饭店查询</button>
+		                    </div>
+		                </form>
+		                <!--</div>-->
+		            </div>
+		        </div>
+		
+		        <div class="container">
+		            <h1>&nbsp;</h1>
+		            <h1 class="text-center" style="margin-bottom: 30px;">产品特性</h1>
+		            <div class="row">
+		                <div class="tp-left col-lg-4 col-md-4 col-sm-12 col-xs-12">
+		                    <img class="center-block" height="45" src="./image/mobile.png" >
+		                    <h3 class="text-center">手机点餐</h3>
+		                    <h5 class="text-center">集手机点餐、预定、外卖为一体的智慧餐饮平台，支持微信支付宝支付账单，轻松便捷。</h5>
+		                </div>
+		                <div class="tp-center col-lg-4 col-md-4 col-sm-12 col-xs-12">
+		                    <img class="center-block" height="45" src="./image/mac.png">
+		                    <h3 class="text-center">后台管控</h3>
+		                    <h5 class="text-center">管理智能化，搭建自己的O2O平台。让饭店与消费者真正面对面，不再受第三方团购平台的控制。</h5>
+		                </div>
+		                <div class="tp-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
+		                    <img class="center-block" height="45" src="./image/reward.png">
+		                    <h3 class="text-center">多项专利</h3>
+		                    <h5 class="text-center">独立自主研发多项专利，领先业界</h5>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+		                        <h6 style="margin: 0px;">&nbsp;</h6>
+		                    <a href="http://www.e999.cc/index/gydcy.asp"><btn class="btn btn-default btn-small" style="border:2px solid #F47636;">关于点菜易</btn></a>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="jumbotron index-banner2">
+		            <div class="container top-banner1">
+		                    <h1 class="text-center">大数据精准分析</h1>
+		                    <h3 class="text-center">掌握顾客消费轨迹，一键查看营业报表！</h3>
+		                    <h4 class="text-center">行业内每个板块数据进行精准分析，</h4>
+		                    <h4 class="text-center">为精准营销提供有力的依据。</h4>
+		                    <a href="http://www.e999.cc/index/cgal.asp"><h4 class="text-center">查看成功案例》</h4></a>
+		                    <img class="img-responsive center-block" src="./image/dashuju.png">
+		            </div>
+		        </div>
+		        <div class="jumbotron index-banner2">
+		            <div class="container top-banner1">
+		                    <img class="img-responsive center-block" src="./image/pt.png">
+		                    <h1 class="text-center">平台自控</h1>
+		                    <h3 class="text-center">平台自主，直面客户，秒杀团购网！</h3>
+		                    <h4 class="text-center" style="color: #666666;">管理智能化，搭建自己的O2O平台。让饭店与消费者真正面对面，</h4>
+		                    <h4 class="text-center" style="color: #666666;">不再受第三方团购平台的控制。</h4>
+		                    <a href="http://www.e999.cc/index/cgal.asp"><h4 class="text-center">查看成功案例》</h4></a>
+		
+		            </div>
+		        </div>
+		    <div class="jumbotron index-banner4">
+		        <div class="container top-banner1">
+		            <div class="row">
+		                <div class="hidden-md hidden-lg col-sm-12 col-xs-12">
+		                    <img class="img-responsive center-block" src="./image/iphone.png">
+		                </div>
+		                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+		                    <h1>&nbsp;</h1>
+		                    <img class="img-responsive center-block" width="20%" src="./image/plane.png" alt=""/>
+		                    <h1 class="text-center">智能远程</h1>
+		                    <h3 class="text-center">足不出户，轻松管控所有连锁分店</h3>
+		                    <h5 class="text-center">融合互联网，局域网，移动互联网。广泛的兼容性，覆盖范围广，稳定性强。可远程服务，随时随地服务客户。</h5>
+		                </div>
+		                <!--<div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>-->
+		                <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
+		                    <img class="img-responsive center-block" src="./image/iphone.png">
+		                </div>
+		                <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+		                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+		                    <h1>&nbsp;</h1>
+		                    <img class="img-responsive center-block" width="20%" src="./image/finger.png" alt=""/>
+		                    <h1 class="text-center">使用方便</h1>
+		                    <h3 class="text-center">多入口进入点餐平台，不需要APP</h3>
+		                    <h5 class="text-center">使用自带或各种第三方app内置浏览器，为精准营销提供最有利的依据。</h5>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="jumbotron index-banner5">
+		        <div class="container top-banner1">
+		            <div class="row">
+		                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		                    <h3 class="text-center" style="color: #666666;">点菜易合作商家</h3>
+		                </div>
+		                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                    <img class="img-responsive pull-right" width="40%" src="./image/smcy1.png">
+		                </div>
+		                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                    <img class="img-responsive pull-left" width="40%" src="./image/lmn1.png">
+		                </div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<img class="img-responsive pull-right" width="40%" src="./image/bn.png">
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<img class="img-responsive pull-left" width="40%" src="./image/haidilao.png">
+						</div>
+		            </div>
+		        </div>
+		</div>
+		
+		    </div>
+		</div>
+		
+		    <div class="jumbotron web-footer">
+		        <div class="container">
+		            <h1 class="text-center" style="color:#cacaca;">点菜易</h1>
+		            <hr/>
+		            <h4 class="text-center" style="color:#cacaca;">千峰PWDZ软件有限公司</h4>
+		            <h4 class="text-center" style="color:#cacaca;"><a href="http://www.beian.miit.gov.cn">粤ICP备 13069543</a></h4>
+		            <h4 class="text-center" style="color:#cacaca;"> </h4>
+		            <h2 class="text-center" style="color: #ca2424">联系电话：110110110</h2>
+		            <div class="center-block" style="margin-top: 20px;">
+		                <!--<div class=""><image class="center-block" src="./image/wechat@2x.png"></div>-->
+		                <h4 class="text-center" style="color:#cacaca;">关注我们的公众号：点菜易</h4>
+		                <div class=""><img class="center-block" src="./image/code.png"> </div>
+				<div class="youlian">友情链接:
+				<a href='http://www.baidu.com' target='_blank'>百度</a> <a href='http://qiye.youboy.com/' target='_blank'>企业名录</a> <a href='http://gongyingshang.youboy.com/' target='_blank'>供应商</a> <a href='http://mixian.jiameng.com/' target='_blank'>米线加盟</a> <a href='http://canyin.91jm.com/' target='_blank'>餐饮加盟</a> <a href='http://www.hxss168.com/' target='_blank'>东莞食堂承包</a> <a href='http://www.naicha2345.com/' target='_blank'>特色奶茶加盟网 </a> <a href='http://www.ahgangfa.com/' target='_blank'>食品纸袋</a> <a href='http://www.cyzxsj.com/' target='_blank'>餐厅设计公司</a> <a href='http://www.qdlhr.com/' target='_blank'>保健茶招商</a> <a href='http://www.shanchengyuwei.com/' target='_blank'>重庆小面加盟  </a> <a href='http://www.msds86.com/ ' target='_blank'>蛋糕店加盟连锁</a> <a href='http://mianguan.qudao.com/' target='_blank'>面馆加盟</a> <a href='http://www.yg972.com/' target='_blank'>美耐皿餐具</a> <a href='http://www.cnpuan.com/' target='_blank'>鲜奶吧加盟</a> <a href='http://www.ahyalan.com/ ' target='_blank'>合肥面馆装修</a> <a href='http://www.51chumi.com/' target='_blank'>酸奶冰淇淋加盟</a> <a href='http://www.jmgongcha.com/' target='_blank'>贡茶</a> <a href='http://www.4006181717.com/' target='_blank'>休闲零食加盟 </a> <a href='http://lingshi.jznews.com.cn/' target='_blank'>零食店加盟</a> <a href='http://www.lkhs.cn/' target='_blank'>食品招商</a> <a href='http://www.wml888.com/' target='_blank'>酸辣粉加盟</a> <a href='http://fbz.shgao.com/' target='_blank'>方便粥</a> <a href='http://tianpindian.shgao.com/' target='_blank'>甜品店加盟</a> <a href='http://www.ashui1998.com/' target='_blank'>奶茶店加盟</a> <a href='http://www.chair0086.com/' target='_blank'>西餐厅桌椅</a> <a href='http://www.022sunny.com/' target='_blank'>餐饮加盟</a> <br /><script src="http://s95.cnzz.com/stat.php?id=1258708569&web_id=1258708569" language="JavaScript"></script>
+				</div>
+		            </div>
+		        </div>
+		    </div>
+		</body>
+		</html>
+	</body>
+</html>

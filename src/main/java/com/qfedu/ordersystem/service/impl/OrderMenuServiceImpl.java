@@ -19,7 +19,7 @@ public class OrderMenuServiceImpl extends ServiceImpl<OrderMenuDao, OrderMenu> i
     public R updataOrderMenuNum(int tid, int num,Integer mid) {
         String s = redisTemplate.opsForValue().get("位置:" + tid);
         if (s == null || s.equals("")) {
-            return R.setError();
+            return R.setERROR();
         }
         Integer oid = Integer.parseInt(s);
         Integer rows = 0;
@@ -33,12 +33,12 @@ public class OrderMenuServiceImpl extends ServiceImpl<OrderMenuDao, OrderMenu> i
             if (num > 0) {
                 Integer i = getBaseMapper().addOrderMenu(orderMenu);
                 if (i > 0){
-                    return R.getOk("ok");
+                    return R.getOK("ok");
                 } else {
-                    return R.setError();
+                    return R.setERROR();
                 }
             } else {
-                return R.setError();
+                return R.setERROR();
 
             }
         }
@@ -50,9 +50,9 @@ public class OrderMenuServiceImpl extends ServiceImpl<OrderMenuDao, OrderMenu> i
 
         if (rows > 0){
 
-            return R.getOk("ok");
+            return R.getOK("ok");
         }else {
-            return R.setError();
+            return R.setERROR();
         }
     }
 }
