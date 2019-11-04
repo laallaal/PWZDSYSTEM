@@ -323,7 +323,7 @@ body{  box-sizing:border-box; padding-top:60px;}
 header{ width:100%; height:50px; position:fixed; top:0px;text-align:center; background:#7e2e14; color:#fff; line-height:50px; font-size:24px; z-index:999; overflow:hidden;}
 .nav{  width:100%; position:fixed; top:50px; z-index:999}
 .nav ul{ overflow:hidden;border-bottom:1px solid #7e2e14; width:100%; box-sizing:border-box; height:35px;}
-.nav ul li a{ width:33.3%; float:left; text-align:center; line-height:30px; font-size:16px; color:#7e2e14;}
+.nav ul li a{ width:25%; float:left; text-align:center; line-height:30px; font-size:16px; color:#7e2e14;}
 a.active{border-bottom:5px solid #7e2e14;}
 .content{ width:100%; box-sizing:border-box; padding:10px; margin-bottom:60px; overflow:hidden;color:#7e2e14;}
 .content ul.desk { overflow:hidden; margin-top:20px;}
@@ -358,6 +358,20 @@ footer ul li a p.cur{ color:#face7e; }
     border-radius:5px;
     color:#7e2e14;
 }
+		 	display:none;
+            position: absolute;
+            top: 25%;
+            left:15%;
+            width: 60%;
+            height:26%;
+            padding: 20px;
+            background-color:#fff;
+            z-index:1002;
+            overflow:hidden;
+			text-align:center;
+		    border-radius:5px;
+			color:#7e2e14;
+        }
 #open .white_content select{ width:90px; margin-bottom:36px;}
 #open .white_content a.close{ position:absolute; top:5px; right:5px;}
 #open .white_content a.close img{ width:18px; height:18px;}

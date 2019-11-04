@@ -23,4 +23,7 @@ public interface MenuDao extends BaseMapper<Menu> {
     @Select("select * from menu  where f_name like CONCAT('%',#{fname},'%')")
     @ResultType(Menu.class)
     List<Menu> selectFood(String fname);
+
+
+    Menu selectById(int id);
 }

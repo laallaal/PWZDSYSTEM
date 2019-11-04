@@ -1,29 +1,23 @@
 package com.qfedu.ordersystem.entry;
 
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
-@TableName("menu")
-public class Menu {
-
-
-    private int residue;
-
-
+@TableName("order")
+public class Order {
     @TableId(type = IdType.AUTO)
     private Integer id;
 
-    private String fName;
+    private Integer tid;
 
-    private Float money;
+    private Integer hid;
+    private Double sumPrice;
+    private Integer pungecydegree;
 
-    private Integer parent;
+    private Integer state;
+    private String orderNum;
 
-    private Integer level;
-
-    private String imgUrl;
 }
