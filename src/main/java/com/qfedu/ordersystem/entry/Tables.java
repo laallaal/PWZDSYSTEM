@@ -1,6 +1,7 @@
 package com.qfedu.ordersystem.entry;
 
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -9,9 +10,11 @@ import lombok.Data;
 @TableName("ttable")
 public class Tables {
 
-    @TableId
+    @TableId(type = IdType.AUTO)
     private int id;
     private String tname;
-    private String state;
+    private String stateid;
     private String tfrom;
+    private String image;
+    private int rid;
 }

@@ -1,6 +1,6 @@
 package com.qfedu.ordersystem.controller;
 
-
+import com.qfedu.ordersystem.entry.Appoint;
 import com.qfedu.ordersystem.service.AdminService;
 import com.qfedu.ordersystem.vo.R;
 import io.swagger.annotations.Api;
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/admin")
-@Api(value = "管理员权限", tags = "这里展示的是管理员才应该进行的操作")
+@Api(value = "管理员权限", tags = "店员操作")
 public class AdminController {
 
     @Autowired
@@ -61,7 +61,42 @@ public class AdminController {
         return R.getOK(adminService.selectTableByInput(str));
     }
 
+    @PostMapping("/addAppoint")
+    @ApiOperation(value = "添加预约")
+    public void addAppoint(Appoint appoint) {
 
+        adminService.addAppoint(appoint);
+
+    }
+
+
+    @PostMapping("/appoint")
+    @ApiOperation(value = "展示该餐厅预约信息")
+    public R appoint(int rid) {
+
+        return  R.getOK(adminService.appoint(rid));
+
+    }
+
+
+
+    @PostMapping("/changeTableType")
+    @ApiOperation(value = "改变餐桌状态")
+    public void changeTableType(int tid, int stateid,int rid) {
+
+        adminService.changeTableStateId(tid, stateid, rid);
+
+    }
+
+
+
+    @PostMapping("/chooseRestaurant")
+    @ApiOperation(value = "选择餐厅")
+    public R chooseRestaurant(String str) {
+
+        return R.getOK(adminService.chooseRestaurantByCode(str));
+
+    }
 
 
 
